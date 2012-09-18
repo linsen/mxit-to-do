@@ -1,0 +1,17 @@
+<%= content_for :title do %>To-Do<% end %>
+
+<% if @items.empty? %>
+  <p>Hooray!  You've got nothing left to do</p>
+<% else %>
+  <% @items.each do |item| %>
+    <p>
+      <b>- <%= item.content %></b>
+      <%= mxit_link complete_item_url(:id => item.id), 'complete' %>
+      <br>
+      &nbsp;&nbsp;&nbsp;<i>Due by <%= item.date %></i><br />
+      &nbsp;&nbsp;&nbsp;(Priority: <%= item.priority %>)
+    <p>
+  <% end %>
+<% end %>
+
+<%= mxit_link add_item_url, 'Add an item' %>
